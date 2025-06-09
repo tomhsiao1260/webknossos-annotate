@@ -1,6 +1,6 @@
 ## Usage
 
-- Copy `.env.example` to `.env` and enter your credentials
+Create `.env` and enter your credentials
 ```
 VESUVIUS_USERNAME=username
 VESUVIUS_PASSWORD=password
@@ -22,3 +22,14 @@ This script processes the downloaded layers to create a surface volume dataset i
 python ink_labels.py
 ```
 This script processes ink labels and converts them to the zarr format.
+
+### WebKnossos Dataset
+
+Take segment 20230702185753 as an example. The dataset folder is the structure that you can upload into Webknossos Dataset.
+
+```bash
+./dataset/surface_volume/1/0/z_axis/y_axis/x_axis
+./dataset/ink_labels/1/0/z_axis/y_axis/x_axis
+```
+
+You can manually edit `datasource-properties.json` and `.zarray` if you use different segment.
