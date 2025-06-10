@@ -1,0 +1,124 @@
+{
+    "id": {
+        "name": "hello-world-dataset",
+        "team": ""
+    },
+    "scale": {
+        "factor": [
+            7.91,
+            7.91,
+            7.91
+        ],
+        "unit": "nanometer"
+    },
+    "dataLayers": [
+        {
+            "name":"surface_volume.zarr",
+            "category":"color",
+            "boundingBox": {
+                "topLeft": [0, 0, 0],
+                "width": 17381,
+                "height": 13513,
+                "depth": 65
+            },
+            "elementClass": "uint16",
+            "mags": [
+                {
+                    "mag": [1, 1, 1],
+                    "path": "surface_volume.zarr/0",
+                    "axisOrder": {"x": 2, "y": 1, "z": 0},
+                    "channelIndex": 0
+                },
+                {
+                    "mag":[2, 2, 2],
+                    "path": "surface_volume.zarr/1",
+                    "axisOrder": {"x": 2, "y": 1, "z": 0},
+                    "channelIndex": 0
+                },
+                {
+                    "mag": [4, 4, 4],
+                    "path": "surface_volume.zarr/2",
+                    "axisOrder": {"x": 2, "y": 1, "z": 0},
+                    "channelIndex": 0
+                },
+                {
+                    "mag": [8, 8, 8],
+                    "path": "surface_volume.zarr/3",
+                    "axisOrder": {"x": 2, "y": 1, "z": 0},
+                    "channelIndex": 0
+                },
+                {
+                    "mag":[16, 16, 16],
+                    "path":"surface_volume.zarr/4",
+                    "axisOrder": {"x": 2, "y": 1, "z": 0},
+                    "channelIndex":0
+                },
+                {
+                    "mag":[32, 32, 32],
+                    "path":"surface_volume.zarr/5",
+                    "axisOrder": {"x": 2, "y": 1, "z": 0},
+                    "channelIndex": 0
+                }
+            ],
+            "defaultViewConfiguration": {},
+            "numChannels": 1,
+            "additionalAxes": [],
+            "dataFormat": "zarr"
+        },
+        {
+            "name":"ink_labels.zarr",
+            "category":"color",
+            "boundingBox": {
+                "topLeft": [0, 0, 0],
+                "width": 17381,
+                "height": 13513,
+                "depth": 65
+            },
+            "elementClass": "uint8",
+            "mags": [
+                {
+                    "mag": [1, 1, 1],
+                    "path": "ink_labels.zarr/0",
+                    "axisOrder": {"x": 2, "y": 1, "z": 0},
+                    "channelIndex": 0
+                },
+                {
+                    "mag":[2, 2, 2],
+                    "path": "ink_labels.zarr/1",
+                    "axisOrder": {"x": 2, "y": 1, "z": 0},
+                    "channelIndex": 0
+                },
+                {
+                    "mag": [4, 4, 4],
+                    "path": "ink_labels.zarr/2",
+                    "axisOrder": {"x": 2, "y": 1, "z": 0},
+                    "channelIndex": 0
+                },
+                {
+                    "mag": [8, 8, 8],
+                    "path": "ink_labels.zarr/3",
+                    "axisOrder": {"x": 2, "y": 1, "z": 0},
+                    "channelIndex": 0
+                },
+                {
+                    "mag":[16, 16, 16],
+                    "path":"ink_labels.zarr/4",
+                    "axisOrder": {"x": 2, "y": 1, "z": 0},
+                    "channelIndex":0
+                },
+                {
+                    "mag":[32, 32, 32],
+                    "path":"ink_labels.zarr/5",
+                    "axisOrder": {"x": 2, "y": 1, "z": 0},
+                    "channelIndex": 0
+                }
+            ],
+            "defaultViewConfiguration": {},
+            "numChannels": 1,
+            "additionalAxes": [],
+            "dataFormat": "zarr"
+        }
+    ]
+}
+
+

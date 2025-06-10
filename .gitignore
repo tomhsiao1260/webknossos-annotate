@@ -11,8 +11,9 @@ __pycache__/
 
 # Output directories
 output/
-hello-world-dataset/
-!hello-world-dataset/datasource-properties.json
+
+/hello-world-dataset/*
+!/hello-world-dataset/datasource-properties.json
 
 # OS specific files
 .DS_Store
