@@ -7,11 +7,11 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-BASE_URL = "https://dl.ash2txt.org/full-scrolls/Scroll1/PHercParis4.volpkg/paths/20230702185753/layers/"
-OUTPUT_DIR = "/Users/yao/Desktop/full-scrolls/20230702185753/layers"
-
 USERNAME = os.getenv('VESUVIUS_USERNAME')
 PASSWORD = os.getenv('VESUVIUS_PASSWORD')
+
+BASE_URL = os.getenv('BASE_URL')
+BASE_DIR = os.getenv('BASE_DIR')
 
 if not USERNAME or not PASSWORD:
     raise ValueError("Please set WEBKNOSSOS_USERNAME and WEBKNOSSOS_PASSWORD in .env file")
@@ -50,7 +50,7 @@ def main():
     for i in range(start, end):
         filename = f"{i:02d}.tif"
         url = BASE_URL + filename
-        output_path = os.path.join(OUTPUT_DIR, filename)
+        output_path = os.path.join(BASE_DIR, filename)
         
         print(f"\nDownloading {filename}...")
         try:

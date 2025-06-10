@@ -1,5 +1,6 @@
 # Python virtual environment
 venv/
+env/
 __pycache__/
 *.py[cod]
 *$py.class
@@ -10,7 +11,8 @@ __pycache__/
 
 # Output directories
 output/
-images/
+hello-world-dataset/
+!hello-world-dataset/datasource-properties.json
 
 # OS specific files
 .DS_Store
