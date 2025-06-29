@@ -23,9 +23,9 @@ python download_layers.py --start 0 --count 65
 
 ## Generate Surface Volume Ome-Zarr
 
-Generate Zarr format (version 2) of surface volume for a given region. (zo, yo, xo) is min point and (zp, yp, xp) is max point of the bounding box.
+Generate Zarr format (version 2) of surface volume for a given region. (x, y, z) is min point and (w, h, d) is the size of the bounding box.
 ```bash
-python surface_volume.py --zo 0 --yo 3047 --xo 13152 --zp 65 --yp 3863 --xp 14128
+python surface_volume.py --x 13152 --y 3047 --z 0 --w 976 --h 816 --d 65
 ```
 And data will be generated in `hello-world-dataset` folder.
 

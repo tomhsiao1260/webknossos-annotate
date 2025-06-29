@@ -6,7 +6,7 @@ import numpy as np
 import argparse
 from dotenv import load_dotenv
 
-def main(start_coord, end_coord):
+def main(start_coord, end_coord, overwrite=True):
     # Load environment variables
     load_dotenv()
     base_dir = os.getenv('BASE_DIR')
@@ -14,13 +14,9 @@ def main(start_coord, end_coord):
 
     if base_dir is None:
         raise Exception(f"Base directory {base_dir} does not exist")
-    
+
     zo, yo, xo = start_coord
     zp, yp, xp = end_coord
-    
-    # Create output directory if it doesn't exist
-    if os.path.exists(output_path): shutil.rmtree(output_path)
-    os.makedirs(output_path, exist_ok=True)
 
     # Pre-allocate a numpy array for all images
     tiff_files = sorted([f for f in os.listdir(base_dir) if f.endswith('.tif')])[zo:zp]
@@ -40,30 +36,38 @@ def main(start_coord, end_coord):
 
     # Save as Zarr v2
     print(f"Saving to {output_path}...")
-    z = zarr.create(
-        store=output_path,
-        shape=(65, height, width),
-        dtype=dtype,
-        chunks=(128, 128, 128),
-        dimension_separator='/',
-        compressor=zarr.Blosc(cname='zstd', clevel=5),
-        write_empty_chunks=False,
-    )
+
+    if os.path.exists(output_path) and overwrite:
+        shutil.rmtree(output_path)
+
+    if not os.path.exists(output_path):
+        z = zarr.create(
+            store=output_path,
+            shape=(65, height, width),
+            dtype=dtype,
+            chunks=(128, 128, 128),
+            dimension_separator='/',
+            compressor=zarr.Blosc(cname='zstd', clevel=5),
+            write_empty_chunks=False,
+        )
+    else:
+        z = zarr.open(output_path)
 
     z[zo:zp, yo:yp, xo:xp] = image_stack
     print("Zarr file created successfully!")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate surface volume Zarr file')
-    parser.add_argument('--zo', type=int, help='Starting z-axis')
-    parser.add_argument('--yo', type=int, help='Starting y-axis')
-    parser.add_argument('--xo', type=int, help='Starting x-axis')
-    parser.add_argument('--zp', type=int, help='Ending z-axis')
-    parser.add_argument('--yp', type=int, help='Ending y-axis')
-    parser.add_argument('--xp', type=int, help='Ending x-axis')
+    parser.add_argument('--x', type=int, help='Starting x-axis')
+    parser.add_argument('--y', type=int, help='Starting y-axis')
+    parser.add_argument('--z', type=int, help='Starting z-axis')
+    parser.add_argument('--w', type=int, help='Width of the volume')
+    parser.add_argument('--h', type=int, help='Height of the volume')
+    parser.add_argument('--d', type=int, help='Depth of the volume')
+    parser.add_argument('--overwrite', action="store_true", help="Overwrite the output directory, if it already exists")
 
     args = parser.parse_args()
-    start_coord = (args.zo, args.yo, args.xo)
-    end_coord = (args.zp, args.yp, args.xp)
+    start_coord = (args.z, args.y, args.x)
+    end_coord = (args.z + args.d, args.y + args.h, args.x + args.w)
 
-    main(start_coord, end_coord) 
+    main(start_coord, end_coord, args.overwrite)
