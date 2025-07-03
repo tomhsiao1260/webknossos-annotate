@@ -21,7 +21,7 @@
                 "height": 13513,
                 "depth": 65
             },
-            "elementClass": "uint16",
+            "elementClass": "uint8",
             "mags": [
                 {
                     "mag": [1, 1, 1],

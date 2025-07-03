@@ -24,12 +24,12 @@ def main(start_coord, end_coord, overwrite=True):
     height, width = first_image.shape
     dtype = first_image.dtype
 
-    image_stack = np.zeros((len(tiff_files), yp-yo, xp-xo), dtype=dtype)
+    image_stack = np.zeros((len(tiff_files), yp-yo, xp-xo), dtype='uint8')
     
     # Read the images into the image stack
     for i in range(zo, zp):
         data = tifffile.imread(os.path.join(base_dir, tiff_files[i]))
-        image_stack[i-zo] = data[yo:yp, xo:xp]
+        image_stack[i-zo] = data[yo:yp, xo:xp].astype('uint8')
         print(f"Processed {i} of {len(tiff_files)}")
 
     print("Image stack shape:", image_stack.shape)
@@ -44,7 +44,7 @@ def main(start_coord, end_coord, overwrite=True):
         z = zarr.create(
             store=output_path,
             shape=(65, height, width),
-            dtype=dtype,
+            dtype='uint8',
             chunks=(128, 128, 128),
             dimension_separator='/',
             compressor=zarr.Blosc(cname='zstd', clevel=5),
